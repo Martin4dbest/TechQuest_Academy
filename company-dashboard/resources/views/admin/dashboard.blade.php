@@ -1,5 +1,5 @@
 @extends('/admin.layouts.master')
-@section('title', isset($title) ? $title->name : 'Default Title')
+@section('title', 'Admin Dashboard')
 
 
 @section('content')
