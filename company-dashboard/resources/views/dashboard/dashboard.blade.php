@@ -2,7 +2,6 @@
 @section('title', 'User Dashboard')
 
 
-
 @section('content')
 <div id="content">
 
