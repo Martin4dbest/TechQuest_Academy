@@ -36,26 +36,13 @@ Route::post('email/resend', [App\Http\Controllers\Auth\VerificationController::c
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin/dashboard', 'App\Http\Controllers\AdminController@index')->name('role:admin');
     Route::get('/dashboard/dashboard', 'App\Http\Controllers\DashboardController@index')->name('role:user');
-    Route::get('/admin/staffs', [AdminController::class, 'users']);
+    Route::get('/admin/staffs', [AdminController::class, 'users'])->name('admin.users');
     Route::get('/admin/view-profile/{id}', [AdminController::class, 'viewstaff']);
-
-    Route::get('/admin/staff/{id}/delete', [AdminController::class, 'confirmDelete'])->name('admin.staff.confirmDelete');
-    Route::delete('/admin/staff/{id}', [AdminController::class, 'delete'])->name('admin.staff.delete');
-
-   
     Route::get('/admin/add-staff', [AdminController::class, 'addstaff'])->name('addstaff.index');
     Route::post('/admin/add-staff', [AdminController::class, 'store'])->name('addstaff.store');
-    //Route::get('/admin/edit', [AdminController::class, 'edit'])->name('admin.editstaff');
     Route::get('/admin/edit/{id}', [AdminController::class, 'editstaff']);
-    Route::put('/admin/edit/{id}', 'App\Http\Controllers\AdminController@update')->name('admin.update');
-
-    
-    
-
-   
-
-
+    Route::put('/admin/edit/{id}', [AdminController::class, 'update'])->name('admin.update');
+    Route::delete('/admin/delete-staff/{id}', [AdminController::class, 'delete'])->name('admin.staff.delete');
 });
-
 // Home route for authenticated users
 Route::get('/home', [HomeController::class, 'index'])->name('home');

@@ -1,6 +1,5 @@
-@extends('/admin.layouts.master')
+@extends('admin.layouts.master')
 @section('title', 'Staffs Information')
-
 
 @section('content')
 <div class="container-fluid">
@@ -13,7 +12,7 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-danger d-inline float-left"><b>{{ __('TechQuest Stem Academy') }}</b></h6>
-        <a href="{{ url('/admin/add-staff') }}"><button class="btn btn-danger float-right"><i class="fa fa-plus mr-2"></i>{{ __('Add Staff') }}</button></a>
+        <a href="{{ route('addstaff.index') }}"><button class="btn btn-danger float-right"><i class="fa fa-plus mr-2"></i>{{ __('Add Staff') }}</button></a>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -49,7 +48,16 @@
                         <td>{{ $user->age }}</td>
                         <td>{{ $user->startdate }}</td>
                         <td>{{ $user->salary }}</td>
-                        <td><a href="{{ url('/admin/view-profile/'.$user->id) }}" class="fa fa-eye text-danger mr-3"></a> <a href="{{ url('/admin/delete-staff/'.$user->id) }}" class="fa fa-trash text-danger"></a></td>
+                        <td>
+                            <a href="{{ url('/admin/view-profile/'.$user->id) }}" class="fa fa-eye text-danger mr-3"></a>
+                            <form action="{{ route('admin.staff.delete', $user->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-link p-0 text-danger" onclick="return confirm('Are you sure you want to delete this staff member?')">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
