@@ -49,7 +49,7 @@
                         <td>{{ $user->age }}</td>
                         <td>{{ $user->startdate }}</td>
                         <td>{{ $user->salary }}</td>
-                        <td><a href="{{ url('/admin/view-profile/'.$user->id) }}" class="fa fa-eye text-danger mr-3"></a> <a href="#" class="fa fa-trash text-danger"></a></td>
+                        <td><a href="{{ url('/admin/view-profile/'.$user->id) }}" class="fa fa-eye text-danger mr-3"></a> <a href="{{ url('/admin/delete-staff/'.$user->id) }}" class="fa fa-trash text-danger"></a></td>
                     </tr>
                     @endforeach
                 </tbody>

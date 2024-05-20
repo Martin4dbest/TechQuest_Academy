@@ -19,7 +19,7 @@
         <div class="">
             <h3>Edit Staff</h3>
             @if (session()->has('success'))
-                <p class="bg-success text-light p-3 w-100">
+                <p class="alert alert-success">
                     {{ session()->get('success') }}
                 </p>
             @endif
@@ -27,16 +27,17 @@
             @if ($errors->any())
                 <ul>
                     @foreach ($errors->all() as $error)
-                        <li class="text-danger w-100">{{ $error }}</li>
+                        <li class="alert alert-danger">{{ $error }}</li>
                     @endforeach
                 </ul>
             @endif
 
-            <form action="{{ route('addstaff.store') }}" method="post">
+            <form action="{{ route('admin.update', $user->id) }}" method="post">
                 @csrf
+                @method('PUT')
                 <div class="row">
                     <div class="col-12 form-group">
-                        <input type="text" name="name" id="name" value="{{ $users->name }}" class="form-control" placeholder="Full Name">
+                        <input type="text" name="name" id="name" value="{{ $user->name }}" class="form-control" placeholder="Full Name">
                     </div>
                 </div>
                 <div class="row">
@@ -48,36 +49,38 @@
                         </select>
                     </div>
                     <div class="col-6 form-group">
-                        <input type="text" name="position" value="{{ $users->position }}" id="position" class="form-control" placeholder="Position">
+                        <input type="text" name="position" value="{{ $user->position }}" id="position" class="form-control" placeholder="Position">
                     </div>
                 </div>
                 <div class="row">
                 <div class="col-12 form-group">
-                        <input type="text" name="office" id="office" value="{{ $users->office }}" class="form-control" placeholder="Office">
+                        <input type="text" name="office" id="office" value="{{ $user->office }}" class="form-control" placeholder="Office">
                     </div>
                     </div>
                 <div class="row">
                     <div class="col-6 form-group">
-                        <input type="number" name="age" value="{{ $users->age }}" id="age" class="form-control" placeholder="Age">
+                        <input type="number" name="age" value="{{ $user->age }}" id="age" class="form-control" placeholder="Age">
                     </div>
                     <div class="col-6 form-group">
-                        <input type="date" name="startdate" value="{{ $users->startdate }}" id="startdate" class="form-control" placeholder="Start Date">
+                        <input type="date" name="startdate" value="{{ $user->startdate }}" id="startdate" class="form-control" placeholder="Start Date">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-12 form-group">
-                        <input type="text" name="salary" value="{{ $users->salary }}" id="salary" class="form-control" placeholder="Salary">
+                        <input type="text" name="salary" value="{{ $user->salary }}" id="salary" class="form-control" placeholder="Salary">
                     </div>
                     <div class="col-12 form-group">
-                        <input type="email" name="email" value="{{ $users->email }}" disabled id="email" class="form-control" placeholder="Email Address">
+                        <input type="email" name="email" value="{{ $user->email }}" disabled id="email" class="form-control" placeholder="Email Address">
+                    </div>
+                    <div class="col-12 form-group">
+                        <input type="password" name="password" value="{{ $user->password }}" disabled id="password" class="form-control" placeholder="Password">
                     </div>
                     </div>
 
                     <div>
                         <button type="submit" class="btn btn-danger">Update Staff Information</button>
                     </div>
-
             </form>
         </div>
     </div>

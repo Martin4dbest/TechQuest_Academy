@@ -1,20 +1,35 @@
 <?php
 
 namespace App\Http\Middleware;
+
 use Closure;
-use Illuminate\Auth\Middleware\Role as Middleware;
 use Illuminate\Support\Facades\Auth;
 
-class Role {
+class Role
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @param  string  $role
+     * @return mixed
+     */
+    public function handle($request, Closure $next, string $role)
+    {
+        // Check if the user is authenticated
+        if (!Auth::check()) {
+            return redirect('/home'); // Redirect to home if not authenticated
+        }
 
-  public function handle($request, Closure $next, String $role) {
-    if (!Auth::check()) // This isnt necessary, it should be part of your 'auth' middleware
-      return redirect('/home');
+        $user = Auth::user();
 
-    $user = Auth::user();
-    if($user->role == $role)
-      return $next($request);
+        // Check if the authenticated user has the required role directly
+        if ($user->role === $role) {
+            return $next($request); // Allow request to proceed
+        }
 
-    return redirect('/home');
-  }
+        return redirect('/home'); // Redirect to home if role does not match
+    }
 }
+

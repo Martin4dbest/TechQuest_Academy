@@ -49,11 +49,11 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Staff Informations</span>
+                    <span>Staff Information</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Staff Informations:</h6>
+                        <h6 class="collapse-header">Staff Information:</h6>
                         <a class="collapse-item" href="{{ url('/admin/staffs') }}">Staffs</a>
                         <a class="collapse-item" href="{{ url('/admin/edit') }}">Edit</a>
                     </div>
@@ -345,7 +345,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; Martin4dbest 2024</span>
                     </div>
                 </div>
             </footer>

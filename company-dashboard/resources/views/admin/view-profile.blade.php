@@ -1,23 +1,22 @@
-@extends('/admin.layouts.master')
+@extends('admin.layouts.master')
 @section('title', 'Staff Profile')
-
 
 @section('content')
 <div class="container-fluid">
 
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">{{ __('Staffs information') }}</h1>
+<h1 class="h3 mb-2 text-gray-800">{{ __('Staff Information') }}</h1>
 
 <div>
     <p class="mb-4 float-left"><b><i>{{ __('Profile') }}</i></b></p>
-    <a href="{{ url('/admin/edit') }}" class="float-right"><b>Edit</b></a>
+    <a href="{{ url('/admin/edit/'.$user->id) }}" class="float-right"><b>Edit</b></a>
 </div><br><br>
 
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h2 class="m-0 font-weight-bold text-danger d-inline float-left"><b>{{ $users->name }}</b> -> Role: {{ $users->role }}</h2>
+        <h2 class="m-0 font-weight-bold text-danger d-inline float-left"><b>{{ $user->name }}</b> -> Role: {{ $user->role }}</h2>
         <h6 class="d-inline float-right text-danger"><b><a href="{{ url('/admin/staffs') }}">{{ __('<-- Back') }}</a></b></h6>
     </div>
     <div class="card-body">
@@ -25,41 +24,42 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <tr>
                         <th>Name</th>
-                        <td>{{ $users->name }}</td>
+                        <td>{{ $user->name }}</td>
                     </tr>
                     <tr>
                         <th>Position</th>
-                        <td>{{ $users->position }}</td>
+                        <td>{{ $user->position }}</td>
                     </tr>
                     <tr>
                         <th>Office</th>
-                        <td>{{ $users->office }}</td>
+                        <td>{{ $user->office }}</td>
                     </tr>
                     <tr>
                         <th>Age</th>
-                        <td>{{ $users->age }}</td>
+                        <td>{{ $user->age }}</td>
                     </tr>
                     <tr>
                         <th>Email</th>
-                        <td>{{ $users->email }}</td>
+                        <td>{{ $user->email }}</td>
                     </tr>
                     <tr>
                         <th>Start Date</th>
-                        <td>{{ $users->startdate }}</td>
+                        <td>{{ $user->startdate }}</td>
                     </tr>
                     <tr>
                         <th>Salary</th>
-                        <td>{{ $users->salary }}</td>
+                        <td>{{ $user->salary }}</td>
                     </tr>
                     <tr>
                         <th>Account Date</th>
-                        <td>{{ $users->created_at }}</td>
+                        <td>{{ $user->created_at }}</td>
                     </tr>
             </table>
-            <a href="{{ url('/admin/edit/'.$users->id) }}" class="btn btn-danger my-3 float-right"><b>Edit</b></a>
+            <a href="{{ url('/admin/edit/'.$user->id) }}" class="btn btn-danger my-3 float-right"><b>Edit</b></a>
         </div>
     </div>
 </div>
 
 </div>
 @endsection
+
