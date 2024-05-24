@@ -45,6 +45,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/dashboard', 'App\Http\Controllers\AdminController@admin')->name('role:admin');
     Route::get('/admin/staffs', [AdminController::class, 'users'])->name('admin.users');
     Route::get('/admin/staffs/{id}', 'App\Http\Controllers\AdminController@trash')->name('delete.staff');
+    
+    Route::get('/admin/send-email', [AdminController::class, 'sendemail']);
+    Route::post('/admin/send-email', [AdminController::class, 'send_it'])->name('send.email');
+
 
     Route::get('/admin/view-staff/{id}', [AdminController::class, 'viewstaff']);
 
