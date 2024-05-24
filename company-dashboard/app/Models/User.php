@@ -1,48 +1,64 @@
 <?php
 
+//namespace App;
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $fillable = [
-        'name',
-        'role',
-        'email',
-        'password',
+        'name', 'email', 'password', 'role',
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * The attributes that should be hidden for arrays.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'password', 'remember_token',
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast to native types.
      *
-     * @return array<string, string>
+     * @var array
      */
-    protected function casts(): array
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    /**
+     * Define a one-to-many relationship with SocialProvider.
+     */
+    public function socialProviders()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->hasMany(SocialProvider::class);
+    }
+
+    /**
+     * Define a one-to-many relationship with SignIn.
+     */
+    public function signIn()
+    {
+        return $this->hasMany(SignIn::class);
+    }
+
+    /**
+     * Define a one-to-many relationship with SignOut.
+     */
+    public function signOut()
+    {
+        return $this->hasMany(SignOut::class);
     }
 }

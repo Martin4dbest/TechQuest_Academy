@@ -38,7 +38,6 @@
                                 @enderror
                             </div>
                         </div>
-                        <input type="hidden" name="role" id="role" value="user">
                         <div class="form-group">
                             <input type="email" class="form-control form-control-user @error('email') is-invalid @enderror" id="email"
                                 placeholder="Email Address" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -64,12 +63,13 @@
                                 <input type="password" class="form-control form-control-user"
                                     id="password-confirm" placeholder="Repeat Password" name="password_confirmation" required autocomplete="new-password">
                             </div>
+                            <input type="hidden" name="role" value="user">
                         </div>
                         <button type="submit" class="btn btn-primary btn-user btn-block">
                             Register Account
                         </button>
                         <hr>
-                        <a href="index.html" class="btn btn-google btn-user btn-block">
+                        <a href="{{ url('auth/google')}}" class="btn btn-google btn-user btn-block">
                             <i class="fab fa-google fa-fw"></i> Register with Google
                         </a>
                         <a href="index.html" class="btn btn-facebook btn-user btn-block">
@@ -77,9 +77,9 @@
                         </a>
                     </form>
                     <hr>
-                    <div class="text-center">
+                    <!-- <div class="text-center">
                         <a class="small" href="forgot-password.html">Forgot Password?</a>
-                    </div>
+                    </div> -->
                     <div class="text-center">
                         <a class="small" href="{{ route('login') }}">Already have an account? Login!</a>
                     </div>

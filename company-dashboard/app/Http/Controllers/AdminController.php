@@ -6,37 +6,59 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
+
+
+
+
 class AdminController extends Controller
 {
     public function __construct() {
         $this->middleware('auth');
     }
 
-    public function index() {
-        return view('/admin/dashboard');
+
+
+    public function admin() {
+        $sign_ins = \App\Models\SignIn::all();
+        $sign_outs = \App\Models\SignOut::all();
+        $salary = User::pluck('salary');
+        return view('admin.dashboard', ['salary' => $salary], compact('sign_ins', 'sign_outs'));
     }
+    
+
+
+    //public function index() {
+        //return view('/admin/dashboard');
+    //}
+
 
     public function users() {
         $users = User::all();
         return view('admin.staffs', compact('users'));
     }
 
-    public function viewstaff($id) {
-        $user = User::find($id);
-        if (!$user) {
-            return redirect()->back()->with('error', 'User not found');
-        }
-        return view('admin.view-profile', compact('user'));
+    public function signins(){
+        //$sign_ins = \App\SignIn::all();
+        $sign_ins = \App\Models\SignIn::all();
+        return view('/admin/sign-in', compact('sign_ins'));
+    }
+    public function signouts(){
+        //$sign_outs = \App\SignOut::all();
+        $sign_outs = \App\Models\SignOut::all();
+        return view('/admin/sign-out', compact('sign_outs'));
     }
 
-    public function delete($id) {
+
+    public function viewstaff($id) {
         $user = User::find($id);
-        if (!$user) {
-            return redirect()->back()->with('error', 'User not found');
-        }
-        $user->delete();
-        return redirect()->route('admin.users')->with('success', 'Staff deleted successfully!');
-        //return redirect()->back()->with('success', 'Staff deleted successfully!');
+        return view('admin.view-staff', compact('user'));
+    }
+
+    public function trash($id)
+    {
+        User::findOrFail($id)->delete();
+
+        return redirect()->back()->with('success', 'User deleted successfully');
     }
 
     public function addstaff() {
@@ -73,10 +95,7 @@ class AdminController extends Controller
 
     public function editstaff($id) {
         $user = User::find($id);
-        if (!$user) {
-            return redirect()->back()->with('error', 'User not found');
-        }
-        return view('admin.edit', compact('user'));
+        return view('/admin/edit-profile', compact('user'));
     }
 
     public function update($id, Request $request){

@@ -1,3 +1,5 @@
+@yield('php');
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
         <!-- Custom fonts for this template-->
+        {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/> --}}
+
+          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://kit.fontawesome.com/3df60fe6e2.js" crossorigin="anonymous"></script>
     <link href="{{ asset('dashboard/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -23,7 +30,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">{{ Auth::user()->name }} </div>
+                <div class="sidebar-brand-text mx-3">Admin </div>
             </a>
 
             <!-- Divider -->
@@ -46,16 +53,21 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
+                <a class="nav-link" href="{{ url('/admin/staffs') }}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>All Staffs</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Staff Information</span>
+                    <span>Staffs Profile</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Staff Information:</h6>
-                        <a class="collapse-item" href="{{ url('/admin/staffs') }}">Staffs</a>
-                        <a class="collapse-item" href="{{ url('/admin/edit') }}">Edit</a>
+                        <h6 class="collapse-header">Staffs Profile:</h6>
+                        <a class="collapse-item" href="{{ url('/admin/staffs') }}">View Staffs</a>
+                        <a class="collapse-item" href="{{ url('/admin/add-staff') }}">Add New Staff</a>
                     </div>
                 </div>
             </li>
@@ -65,16 +77,16 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
+                    <span>Attendance</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="#">Colors</a>
-                        <a class="collapse-item" href="#">Borders</a>
-                        <a class="collapse-item" href="#">Animations</a>
-                        <a class="collapse-item" href="#">Other</a>
+                        <h6 class="collapse-header">Staffs Attendance:</h6>
+                        <a class="collapse-item" href="{{ url('/admin/sign-in') }}">Sign-In(s)</a>
+                        <a class="collapse-item" href="{{ url('/admin/sign-out') }}">Sign-Out(s)</a>
+                        {{-- <a class="collapse-item" href="#">Animations</a>
+                        <a class="collapse-item" href="#">Other</a> --}}
                     </div>
                 </div>
             </li>
@@ -345,7 +357,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Martin4dbest 2024</span>
+                        <span>Copyright &copy; Your Website 2021</span>
                     </div>
                 </div>
             </footer>
@@ -393,5 +405,7 @@
     <script src="{{ asset('dashboard/vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('dashboard/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('dashboard/js/demo/datatables-demo.js') }}"></script>
+
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
 </body>
 </html>

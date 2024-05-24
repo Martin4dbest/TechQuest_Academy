@@ -1,3 +1,29 @@
+// <?php
+//     use Illuminate\Support\Facades\DB;
+//     $users = DB::table('users')->count();
+//     echo $users;
+// ?>
+// const express = require('express');
+// const app = express();
+
+// const mysql = require('mysql');
+
+// const conn = mysql.createConnection({
+//     host : 'localhost',
+//     user : 'root',
+//     password : '',
+//     database : 'techquestdb2'
+// });
+
+// conn.connect();
+
+// let mysqliGet = conn.query('select * from users', function(err, rows, fields){
+//     if (!err){
+//         let data1 = rows;
+//     }
+
+// });
+
 // Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
